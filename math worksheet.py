@@ -265,14 +265,14 @@ while count < (totalQuestions):
 
     
 
-if wrongAnswers > 3:
-    print(f"You got a total of {wrongAnswers} questions wrong. Muma is disappointed in you Srijay. :(")
+if wrongAnswers > 5:
+    print(f"You got a total of {wrongAnswers} questions wrong.")
 
-elif 0 < wrongAnswers <= 3:
-    print(f"You got most of the questions right. Only {wrongAnswers} question were wrong. Muma is proud of you Srijay")
+elif 0 < wrongAnswers <= 5:
+    print(f"You got most of the questions right. Only {wrongAnswers} question were wrong. Good Job!")
 
 elif wrongAnswers == 0:
-    print(f"You got all of the questions right. Muma is proud of you, Srijay")
+    print(f"You got all of the questions right. Good Job!")
 #else:
     #print(f"You got a total of {wrongAnswers} questions wrong. :(")
 
@@ -292,7 +292,7 @@ seconds_taken = seconds_since_midnight2 - seconds_since_midnight1
 seconds_per_question = seconds_taken/totalQuestions
 
 if seconds_per_question > int(desired_seconds_per_question):
-    print(f"You took {seconds_per_question} seconds per question on average. Try harder next time.")
+    print(f"You took {seconds_per_question} seconds per question on average. Try to go faster next time.")
 else:
     print(f"You only took {seconds_per_question} seconds per question on average. Good Job!")
 
