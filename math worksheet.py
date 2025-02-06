@@ -17,6 +17,12 @@ wrongAnswers = 0
 count = 0
 
 operation = input("Choose from add, sub, sub with carry, or mixed: ")
+valid_operations = ["add", "sub", "mixed", "sub with carry", "swc"]
+
+while operation.lower() not in valid_operations:
+    print("Invalid operation.")
+    operation = input("Choose from add, sub, sub with carry, or mixed: ")
+    
 
 desired_seconds_per_question = input("What is your desired seconds per question: ")
 
@@ -250,15 +256,8 @@ while count < (totalQuestions):
                     wrongAnswers += 1
 
     print("The question set has been completed!")
+#--------------------------------------------------------------------------------------------------------------
 
-    else:
-        print("Invalid operation. Please restart the program.")
-        break
-
-
-
-
-    
 
 if wrongAnswers > 5:
     print(f"You got a total of {wrongAnswers} questions wrong.")
