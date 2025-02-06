@@ -195,66 +195,61 @@ while count < (totalQuestions):
                 else:
                     print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
                     wrongAnswers += 1
+#--------------------------------------------------------------------------------------------------------------------------------------------------
 
+    elif operation.lower() == "sub with carry" or "swc":
+        while count < totalQuestions:
+        # Generate two random numbers where borrowing will definitely happen
+            num1 = random.randint(10, 999)  # Minuend
+            num2 = random.randint(1, num1 - 1)  # Subtrahend
+        
+        # Ensure borrowing in ones place (for two-digit numbers)
+            if num1 % 10 >= num2 % 10:
+                num1 = random.randint(10, 99)  # Regenerate num1 if borrowing in ones is not happening
+                num2 = random.randint(1, num1 - 1)
+        
+        # Ensure borrowing in the tens place if needed
+            if num1 >= 100:
+                if (num1 // 10) % 10 >= (num2 // 10) % 10:  # Borrowing happens in the tens place
+                    num1 = random.randint(100, 999)
+                    num2 = random.randint(1, num1 - 1)
 
-    elif operation.lower() == "sub with carry":
-        num1 = random.randrange(10,100)
-        num2 = random.randrange(0, num1)
-
-        ones1 = num1 % 10
-
-        ones2 = num2 % 10
-
-        if ones1 < ones2:
-            pass
-
-        elif ones1 == 9:
-            pass
-
-        elif ones1 > ones2:
-            diff = (ones1 - ones2) + 1 # lower limit
-            to_ten = 10 - ones2 # upper limit
-
-            addative = random.randrange(diff, to_ten)
-            num2 += addative
-
-        playerAnswer = input(f"Question Number {count + 1}: {num1} - {num2} = ")
-                
-        if str(playerAnswer).lower() == "restart":
-            count = 0
-            wrongAnswers = 0
-            print("The question set has been reset.")
-
-
-        elif playerAnswer.lower() == "end":
-            count = totalQuestions
-            print(wrongAnswers)
-
-
-        elif int(playerAnswer) == (num1 - num2):
-            print("Correct!")
-            count += 1
-                
-            if count == totalQuestions:
-                print("The question set has been completed!")
+        # Ask the player for the answer
+           
+            playerAnswer = input(f"Question {count + 1}: {num1} - {num2} = ")
+            
+            if playerAnswer.lower() == "restart":
+                count = 0
+                wrongnswers = 0
+                print("The question set has been reset.")
+                break
+        
+            elif playerAnswer.lower() == "end":
+                print(f"Total wrong answers: {wrongAnswers}")
+                    
+            
+            elif int(playerAnswer) == (num1 - num2):
+                print("Correct!")
+                count += 1
                 break
 
-           
-        else:
-            newAnswer = input("Incorrect! Try Again: ")
-            wrongAnswers += 1
-
-            if newAnswer.lower() == "restart":
-                count = 0
-                wrongAnswers = 0
-                print("The question set has been reset.")
-                
-            elif int(newAnswer) == (num1 - num2):
-                count += 1
-                print("Correct")
             else:
-                print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
+                newAnswer = input("Incorrect! Try Again: ")
                 wrongAnswers += 1
+
+                if newAnswer.lower() == "restart":
+                    count = 0
+                    wrongAnswers = 0
+                    print("The question set has been reset.")
+                
+                elif int(newAnswer) == (num1 - num2):
+                    count += 1
+                    print("Correct")
+                else:
+                    print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
+                    wrongAnswers += 1
+
+    print("The question set has been completed!")
 
     else:
         print("Invalid operation. Please restart the program.")
