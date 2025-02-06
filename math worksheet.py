@@ -226,7 +226,7 @@ while count < (totalQuestions):
             
             if playerAnswer.lower() == "restart":
                 count = 0
-                wrongnswers = 0
+                wrongAnswers = 0
                 print("The question set has been reset.")
                 break
         
@@ -237,7 +237,11 @@ while count < (totalQuestions):
             elif int(playerAnswer) == (num1 - num2):
                 print("Correct!")
                 count += 1
-                break
+                
+                
+                if count == totalQuestions:
+                    print("The question set has been completed!")
+                    break
 
             else:
                 newAnswer = input("Incorrect! Try Again: ")
@@ -255,7 +259,7 @@ while count < (totalQuestions):
                     print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
                     wrongAnswers += 1
 
-    print("The question set has been completed!")
+
 #--------------------------------------------------------------------------------------------------------------
 
 
