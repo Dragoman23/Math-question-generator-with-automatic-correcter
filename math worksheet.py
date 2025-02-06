@@ -31,7 +31,7 @@ totalQuestions = int(input("How many questions would you like: "))
 # Get the current time
 now = datetime.now()
 
-# Calculate seconds since the start of the day
+# Calculate seconds since the start of the day with a small buffer to account for the start
 seconds_since_midnight1 = (now.hour * 3600 + now.minute * 60 + now.second)-2
 
 
