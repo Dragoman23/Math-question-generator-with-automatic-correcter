@@ -90,16 +90,16 @@ while counter1 <= int(number_of_operations):
              # Get range for the first number
             range3_input = input("Desired range for the dividend: ")
             try:
-                lower_range3, upper_range3 = [int(x.strip()) for x in range3_input.split('-')]
+                lower_range3, upper_range3 = [int(x.strip()) for x in range1_input.split('-')]
                 break
             except ValueError:
                 print("Invalid input format for the dividend's range.")
                 
         while True:
             # Get range for the second number
-            range4_input = input("Desired range for the divisor (CAN'T START AT ZERO): ")
+            range2_input = input("Desired range for the divisor (CAN'T START AT ZERO): ")
             try:
-                lower_range4, upper_range4 = [int(x.strip()) for x in range4_input.split('-')]
+                lower_range2, upper_range2 = [int(x.strip()) for x in range2_input.split('-')]
                 break
             except ValueError:
                 print("Invalid input format for the divisor's range.")
@@ -133,6 +133,7 @@ while count < (totalQuestions):
         num1 = random.randrange(0, 10000)
         num2 = random.randrange(0, 10000)
         correct = False
+        mistakes = 0
 
         while not correct:
 
@@ -143,6 +144,7 @@ while count < (totalQuestions):
                     count = 0
                     wrongAnswers = 0
                     print("The question set has been reset.")
+                    break
 
                 elif playerAnswer.lower() == "end":
                     count = totalQuestions
@@ -160,6 +162,7 @@ while count < (totalQuestions):
                 else:
                     newAnswer = input("Incorrect! Try Again: ")
                     wrongAnswers += 1
+                    mistakes += 1
 
                     if newAnswer.lower() == "restart":
                         count = 0
@@ -170,7 +173,11 @@ while count < (totalQuestions):
                         count += 1
                         print("Correct!")
                         correct = True
-    
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 + num2}. Moving to another question.")
+                        break
+                       
                     else:
                         print(f"Incorrect! The answer was {num1 + num2}. Try another problem.")
                         wrongAnswers += 1
@@ -185,6 +192,7 @@ while count < (totalQuestions):
         num1 = random.randrange(0, 10000)
         num2 = random.randrange(0, num1 + 1)
         correct = False
+        mistakes = 0
 
         while not correct:
 
@@ -216,6 +224,7 @@ while count < (totalQuestions):
                 else:
                     newAnswer = input("Incorrect! Try Again: ")
                     wrongAnswers += 1
+                    mistakes += 1
 
                     if newAnswer.lower() == "restart":
                         count = 0
@@ -225,7 +234,11 @@ while count < (totalQuestions):
                     elif int(newAnswer) == (num1 - num2):
                         count += 1
                         correct =True
-                        
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 - num2}. Moving to another question.")
+                        break
+                    
                     else:
                         print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
                         wrongAnswers += 1
@@ -239,6 +252,7 @@ while count < (totalQuestions):
     elif operation == "swc":
 
         correct = False
+        mistakes = 0
         
         while count < totalQuestions:
         # Generate two random numbers where borrowing will definitely happen
@@ -295,6 +309,7 @@ while count < (totalQuestions):
                     else:
                         newAnswer = input("Incorrect! Try Again: ")
                         wrongAnswers += 1
+                        mistakes += 1
 
                         if newAnswer.lower() == "restart":
                             count = 0
@@ -305,6 +320,10 @@ while count < (totalQuestions):
                             count += 1
                             print("Correct")
                             correct = True
+
+                        elif mistakes >= 1:
+                            print(f"Incorrect again! The correct answer was {num1 - num2}. Moving to another question.")
+                            break
                             
                         else:
                             print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
@@ -320,6 +339,7 @@ while count < (totalQuestions):
         num1 = random.randrange(0, 100)
         num2 = random.randrange(0, 100)
         correct = False
+        mistakes = 0
 
         while not correct:
             try:
@@ -358,9 +378,14 @@ while count < (totalQuestions):
                         count += 1
                         print("Correct!")
                         correct = True
-            
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 * num2}. Moving to next question.")
+                        count += 1
+                        break
+                    
                     else:
-                        print(f"Incorrect! The answer was {num1 + num2}. Try another problem.")
+                        print(f"Incorrect! The answer was {num1 * num2}. Try another problem.")
                         wrongAnswers += 1
 
             except Exception as e:
@@ -375,6 +400,8 @@ while count < (totalQuestions):
         num1 = random.randrange(0, 1000)
         num2 = random.randrange(0, 100)
         correct = False
+        mistakes = 0
+        
 
         remainder = num1 % num2
         num1 -= remainder
@@ -415,9 +442,14 @@ while count < (totalQuestions):
                         count += 1
                         print("Correct!")
                         correct = True
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 / num2}. Moving to next question.")
+                        count += 1
+                        break
             
                     else:
-                        print(f"Incorrect! The answer was {num1 + num2}. Try another problem.")
+                        print(f"Incorrect! The answer was {num1 / num2}. Try another problem.")
                         wrongAnswers += 1
 
             except Exception as e:
@@ -431,6 +463,7 @@ while count < (totalQuestions):
         num1 = random.randrange(int(lower_range1), int(upper_range1))
         num2 = random.randrange(int(lower_range2), int(upper_range2))
         correct = False
+        mistakes = 0
 
         while not correct:
             try:
@@ -468,20 +501,26 @@ while count < (totalQuestions):
                         count += 1
                         print("Correct!")
                         correct = True
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 * num2}. Moving to next question.")
+                        count += 1
+                        break
             
                     else:
-                        print(f"Incorrect! The answer was {num1 + num2}. Try another problem.")
+                        print(f"Incorrect! The answer was {num1 * num2}. Try another problem.")
                         wrongAnswers += 1
 
             except Exception as e:
                 print(f"Invalid input: {e}. Please try again.")
 
 #--------------------------------------------------------------------------------------------------------
-#Custom Range Multiplication
+#Custom Range Division
     elif operation.lower() == "crd":
         num1 = random.randrange(int(lower_range3), int(upper_range3))
         num2 = random.randrange(int(lower_range4), int(upper_range4))
         correct = False
+        mistakes = 0
 
         remainder = num1 % num2
         num1 -= remainder
@@ -522,9 +561,14 @@ while count < (totalQuestions):
                         count += 1
                         print("Correct!")
                         correct = True
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 / num2}. Moving to next question.")
+                        count += 1
+                        break
             
                     else:
-                        print(f"Incorrect! The answer was {num1 + num2}. Try another problem.")
+                        print(f"Incorrect! The answer was {num1 / num2}. Try another problem.")
                         wrongAnswers += 1
 
             except Exception as e:
