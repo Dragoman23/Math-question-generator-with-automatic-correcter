@@ -9,7 +9,7 @@ operations = []
 
 counter1 = 1
 
-valid_inputs = {"1", "2", "3", "4", "5", "6", "7"} #, "8", "9", "10"} 
+valid_inputs = {"1", "2", "3", "4", "5", "6", "7", "8", "9"} # "10"} 
 #--------------------------------------------------------------------------------------------------------
 # Get the current time
 now = datetime.now()
@@ -23,17 +23,17 @@ wrongAnswers = 0
 
 count = 0
 
-print("1.Addition - (Range:0 - 9999)\n\n2.Subtraction - (Range:0 - 9999)\n\n3.Multiplication - (Range:0 - 100)\n\n4.Division - (Range:0 - 1000)\n\n5.Subtraction with Carrying - (Range:0 - 9999)\n\n6.Custom Range Multiplication\n\n7.Custom Range Divison")
+print("1.Addition - (Range:0 - 9999)\n\n2.Subtraction - (Range:0 - 9999)\n\n3.Multiplication - (Range:0 - 100)\n\n4.Division - (Range:0 - 1000)\n\n5.Subtraction with Carrying - (Range:0 - 9999)\n\n6.Custom Range Addition\n\n7.Custom Range Subtraction\n\n8.Custom Range Multiplication\n\n9.Custom Range Division")
 
 while True:
     number_of_operations = input("\nHow many operations do you want: ")
     if number_of_operations.isdigit():
         number_of_operations = int(number_of_operations)
 
-        if 1 <= number_of_operations <= 7:
+        if 1 <= number_of_operations <= 9:
             break
         else:
-            print("\nPlease enter a number between 1 and 7.")
+            print("\nPlease enter a number between 1 and 9.")
 
     else:
         print("\nPlease enter a valid whole number.")
@@ -61,11 +61,11 @@ while counter1 <= int(number_of_operations):
         operations.append("swc")
 
     if int(operation) == 6:
-        operations.append("crm")
+        operations.append("cra")
 
         while True:
              # Get range for the first number
-            range1_input = input("Desired range for the first number (Multiplication): ")
+            range1_input = input("\nDesired range for the first number (Addition): ")
             try:
                 lower_range1, upper_range1 = [int(x.strip()) for x in range1_input.split('-')]
                 break 
@@ -75,7 +75,53 @@ while counter1 <= int(number_of_operations):
 
         while True:
             # Get range for the second number
-            range2_input = input("Desired range for the second number (Multiplication): ")
+            range2_input = input("\nDesired range for the second number (Addition): ")
+            try:
+                lower_range2, upper_range2 = [int(x.strip()) for x in range2_input.split('-')]
+                break
+            except ValueError:
+                print("Invalid format for the second number's range. Try again.")
+
+
+    if int(operation) == 7:
+        operations.append("crs")
+
+        while True:
+             # Get range for the first number
+            range1_input = input("\nDesired range for the first number (Subtraction): ")
+            try:
+                lower_range1, upper_range1 = [int(x.strip()) for x in range1_input.split('-')]
+                break 
+            except ValueError:
+                print("Invalid format for the first number's range. Try again.")
+               
+
+        while True:
+            # Get range for the second number
+            range2_input = input("\nDesired range for the second number (Subtraction): ")
+            try:
+                lower_range2, upper_range2 = [int(x.strip()) for x in range2_input.split('-')]
+                break
+            except ValueError:
+                print("Invalid format for the second number's range. Try again.")
+
+
+    if int(operation) == 8:
+        operations.append("crm")
+
+        while True:
+             # Get range for the first number
+            range1_input = input("\nDesired range for the first number (Multiplication): ")
+            try:
+                lower_range1, upper_range1 = [int(x.strip()) for x in range1_input.split('-')]
+                break 
+            except ValueError:
+                print("Invalid format for the first number's range. Try again.")
+               
+
+        while True:
+            # Get range for the second number
+            range2_input = input("\nDesired range for the second number (Multiplication): ")
             try:
                 lower_range2, upper_range2 = [int(x.strip()) for x in range2_input.split('-')]
                 break
@@ -83,12 +129,12 @@ while counter1 <= int(number_of_operations):
                 print("Invalid format for the second number's range. Try again.")
                 
 
-    if int(operation) == 7:
+    if int(operation) == 9:
         operations.append("crd")
 
         while True:   
              # Get range for the first number
-            range3_input = input("Desired range for the dividend: ")
+            range3_input = input("\nDesired range for the dividend: ")
             try:
                 lower_range3, upper_range3 = [int(x.strip()) for x in range1_input.split('-')]
                 break
@@ -97,7 +143,7 @@ while counter1 <= int(number_of_operations):
                 
         while True:
             # Get range for the second number
-            range2_input = input("Desired range for the divisor (CAN'T START AT ZERO): ")
+            range2_input = input("\nDesired range for the divisor (CAN'T START AT ZERO): ")
             try:
                 lower_range2, upper_range2 = [int(x.strip()) for x in range2_input.split('-')]
                 break
@@ -113,7 +159,7 @@ print(operations) # test/check
 
 desired_seconds_per_question = input("What is your desired seconds per question: ")
 
-totalQuestions = int(input("How many questions would you like: "))
+totalQuestions = int(input("\nHow many questions would you like: "))
 
 # Get the current time
 now = datetime.now()
@@ -180,7 +226,8 @@ while count < (totalQuestions):
                        
                     else:
                         print(f"Incorrect! The answer was {num1 + num2}. Try another problem.")
-                        wrongAnswers += 1
+
+                        
             except Exception as e:
                 print(f"Invalid input: {e}. Please try again.")
             
@@ -241,7 +288,7 @@ while count < (totalQuestions):
                     
                     else:
                         print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
-                        wrongAnswers += 1
+                        
 
             except Exception as e:
                 print(f"Invalid input: {e}. Please try again.")
@@ -327,7 +374,7 @@ while count < (totalQuestions):
                             
                         else:
                             print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
-                            wrongAnswers += 1
+                            
 
                 except Exception as e:
                     print(f"Invalid input: {e}. Please try again.")
@@ -368,6 +415,7 @@ while count < (totalQuestions):
                 else:
                     newAnswer = input("Incorrect! Try Again: ")
                     wrongAnswers += 1
+                    mistakes += 1
 
                     if newAnswer.lower() == "restart":
                         count = 0
@@ -380,13 +428,12 @@ while count < (totalQuestions):
                         correct = True
 
                     elif mistakes >= 1:
-                        print(f"Incorrect again! The correct answer was {num1 * num2}. Moving to next question.")
-                        count += 1
+                        print(f"Incorrect again! The correct answer was {num1 * num2}. Moving to another question.")
                         break
                     
                     else:
                         print(f"Incorrect! The answer was {num1 * num2}. Try another problem.")
-                        wrongAnswers += 1
+                        
 
             except Exception as e:
                 print(f"Invalid input: {e}. Please try again.")
@@ -432,6 +479,7 @@ while count < (totalQuestions):
                 else:
                     newAnswer = input("Incorrect! Try Again: ")
                     wrongAnswers += 1
+                    mistakes += 1
 
                     if newAnswer.lower() == "restart":
                         count = 0
@@ -444,19 +492,136 @@ while count < (totalQuestions):
                         correct = True
 
                     elif mistakes >= 1:
-                        print(f"Incorrect again! The correct answer was {num1 / num2}. Moving to next question.")
-                        count += 1
+                        print(f"Incorrect again! The correct answer was {num1 / num2}. Moving to another question.")
                         break
             
                     else:
                         print(f"Incorrect! The answer was {num1 / num2}. Try another problem.")
-                        wrongAnswers += 1
+                        
 
             except Exception as e:
                 print(f"Invalid input: {e}. Please try again.")
 
 
-#---------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------
+#Custom Range Addition
+
+    elif operation.lower() == "cra":
+        num1 = random.randrange(int(lower_range1), int(upper_range1))
+        num2 = random.randrange(int(lower_range2), int(upper_range2))
+        correct = False
+        mistakes = 0
+
+        while not correct:
+            try:
+
+                playerAnswer = input(f"Question Number {count + 1}: {num1} + {num2} = ")
+                    
+                if playerAnswer.lower() == "restart":
+                    count = 0
+                    wrongAnswers = 0
+                    print("The question set has been reset.")
+
+                elif playerAnswer.lower() == "end":
+                    count = totalQuestions
+                    quit()
+
+                elif int(playerAnswer) == (num1 + num2):
+                    print("Correct!")
+                    count += 1
+                    correct = True
+                        
+                    if count == totalQuestions:
+                        print("The question set has been completed!")
+                        break
+
+                else:
+                    newAnswer = input("Incorrect! Try Again: ")
+                    wrongAnswers += 1
+                    mistakes += 1
+
+                    if newAnswer.lower() == "restart":
+                        count = 0
+                        wrongAnswers = 0
+                        print("The question set has been reset.")
+
+                    elif int(newAnswer) == (num1 + num2):
+                        count += 1
+                        print("Correct!")
+                        correct = True
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 + num2}. Moving to another question.")
+                        break
+            
+                    else:
+                        print(f"Incorrect! The answer was {num1 + num2}. Try another problem.")
+                        
+
+            except Exception as e:
+                print(f"Invalid input: {e}. Please try again.")
+
+
+#-----------------------------------------------------------------------------------------------------------------------------
+# Custom Range Subtraction
+
+    elif operation.lower() == "crs":
+        num1 = random.randrange(int(lower_range1), int(upper_range1))
+        num2 = random.randrange(int(lower_range2), int(upper_range2))
+        correct = False
+        mistakes = 0
+
+        while not correct:
+            try:
+
+                playerAnswer = input(f"Question Number {count + 1}: {num1} - {num2} = ")
+                    
+                if playerAnswer.lower() == "restart":
+                    count = 0
+                    wrongAnswers = 0
+                    print("The question set has been reset.")
+
+                elif playerAnswer.lower() == "end":
+                    count = totalQuestions
+                    quit()
+
+                elif int(playerAnswer) == (num1 - num2):
+                    print("Correct!")
+                    count += 1
+                    correct = True
+                        
+                    if count == totalQuestions:
+                        print("The question set has been completed!")
+                        break
+
+                else:
+                    newAnswer = input("Incorrect! Try Again: ")
+                    wrongAnswers += 1
+                    mistakes += 1
+
+                    if newAnswer.lower() == "restart":
+                        count = 0
+                        wrongAnswers = 0
+                        print("The question set has been reset.")
+
+                    elif int(newAnswer) == (num1 - num2):
+                        count += 1
+                        print("Correct!")
+                        correct = True
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 - num2}. Moving to next question.")
+                        break
+            
+                    else:
+                        print(f"Incorrect! The answer was {num1 - num2}. Try another problem.")
+                        
+
+            except Exception as e:
+                print(f"Invalid input: {e}. Please try again.")
+
+
+#-----------------------------------------------------------------------------------------------------------------------------
 # Custom Range Multiplication
 
     elif operation.lower() == "crm":
@@ -468,7 +633,7 @@ while count < (totalQuestions):
         while not correct:
             try:
 
-                playerAnswer = input(f"Question Number {count + 1}: {num1} x {num2} = ")
+                playerAnswer = input(f"Question Number {count + 1}: {num1} * {num2} = ")
                     
                 if playerAnswer.lower() == "restart":
                     count = 0
@@ -491,6 +656,7 @@ while count < (totalQuestions):
                 else:
                     newAnswer = input("Incorrect! Try Again: ")
                     wrongAnswers += 1
+                    mistakes += 1
 
                     if newAnswer.lower() == "restart":
                         count = 0
@@ -503,13 +669,12 @@ while count < (totalQuestions):
                         correct = True
 
                     elif mistakes >= 1:
-                        print(f"Incorrect again! The correct answer was {num1 * num2}. Moving to next question.")
-                        count += 1
+                        print(f"Incorrect again! The correct answer was {num1 * num2}. Moving to another question.")
                         break
             
                     else:
                         print(f"Incorrect! The answer was {num1 * num2}. Try another problem.")
-                        wrongAnswers += 1
+                        
 
             except Exception as e:
                 print(f"Invalid input: {e}. Please try again.")
@@ -551,6 +716,7 @@ while count < (totalQuestions):
                 else:
                     newAnswer = input("Incorrect! Try Again: ")
                     wrongAnswers += 1
+                    mistakes += 1
 
                     if newAnswer.lower() == "restart":
                         count = 0
@@ -563,13 +729,12 @@ while count < (totalQuestions):
                         correct = True
 
                     elif mistakes >= 1:
-                        print(f"Incorrect again! The correct answer was {num1 / num2}. Moving to next question.")
-                        count += 1
+                        print(f"Incorrect again! The correct answer was {num1 / num2}. Moving to another question.")
                         break
             
                     else:
                         print(f"Incorrect! The answer was {num1 / num2}. Try another problem.")
-                        wrongAnswers += 1
+                        
 
             except Exception as e:
                 print(f"Invalid input: {e}. Please try again.")
