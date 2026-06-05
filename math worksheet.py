@@ -739,7 +739,61 @@ while count < (totalQuestions):
             except Exception as e:
                 print(f"Invalid input: {e}. Please try again.")
 
+#-----------------------------------------------------------------------------------------------------------------------------
+#Custom Range Exponents
+    elif operation.lower() == "cre":
+        num1 = random.randrange(int(lower_range5), int(upper_range5))
+        num2 = random.randrange(int(lower_range6), int(upper_range6))
+        correct = False
+        mistakes = 0
 
+        while not correct:
+            try:
+
+                playerAnswer = input(f"Question Number {count + 1}: {num1} ^ {num2} = ")
+                    
+                if playerAnswer.lower() == "restart":
+                    count = 0
+                    wrongAnswers = 0
+                    print("The question set has been reset.")
+
+                elif playerAnswer.lower() == "end":
+                    count = totalQuestions
+                    quit()
+
+                elif int(playerAnswer) == (num1 ^ num2):
+                    print("Correct!")
+                    count += 1
+                    correct = True
+                        
+                    if count == totalQuestions:
+                        print("The question set has been completed!")
+                        break
+
+                else:
+                    newAnswer = input("Incorrect! Try Again: ")
+                    wrongAnswers += 1
+                    mistakes += 1
+
+                    if newAnswer.lower() == "restart":
+                        count = 0
+                        wrongAnswers = 0
+                        print("The question set has been reset.")
+
+                    elif int(newAnswer) == (num1 ^ num2):
+                        count += 1
+                        print("Correct!")
+                        correct = True
+
+                    elif mistakes >= 1:
+                        print(f"Incorrect again! The correct answer was {num1 ^ num2}. Moving to another question.")
+                        break
+                    else:
+                        print(f"Incorrect! The answer was {num1 ^ num2}. Try another problem.")
+                        
+
+            except Exception as e:
+                print(f"Invalid input: {e}. Please try again.")
 
 #-------------------------------------------------------------------------------------------------------                
 if wrongAnswers > 5:
