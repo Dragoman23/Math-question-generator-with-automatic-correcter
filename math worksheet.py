@@ -2,14 +2,13 @@ import random
 
 from datetime import datetime
 
-from datetime import datetime
-
+import unicodedata
 
 operations = []
 
 counter1 = 1
 
-valid_inputs = {"1", "2", "3", "4", "5", "6", "7", "8", "9"} # "10"} 
+valid_inputs = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"} 
 #--------------------------------------------------------------------------------------------------------
 # Get the current time
 now = datetime.now()
@@ -23,17 +22,17 @@ wrongAnswers = 0
 
 count = 0
 
-print("1.Addition - (Range:0 - 9999)\n\n2.Subtraction - (Range:0 - 9999)\n\n3.Multiplication - (Range:0 - 100)\n\n4.Division - (Range:0 - 1000)\n\n5.Subtraction with Carrying - (Range:0 - 9999)\n\n6.Custom Range Addition\n\n7.Custom Range Subtraction\n\n8.Custom Range Multiplication\n\n9.Custom Range Division")
+print("1.Addition - (Range:0 - 9999)\n\n2.Subtraction - (Range:0 - 9999)\n\n3.Multiplication - (Range:0 - 100)\n\n4.Division - (Range:0 - 1000)\n\n5.Subtraction with Carrying - (Range:0 - 9999)\n\n6.Custom Range Addition\n\n7.Custom Range Subtraction\n\n8.Custom Range Multiplication\n\n9.Custom Range Division\n\n10.Custom Range Exponents")
 
 while True:
     number_of_operations = input("\nHow many operations do you want: ")
     if number_of_operations.isdigit():
         number_of_operations = int(number_of_operations)
 
-        if 1 <= number_of_operations <= 9:
+        if 1 <= number_of_operations <= 10:
             break
         else:
-            print("\nPlease enter a number between 1 and 9.")
+            print("\nPlease enter a number between 1 and 10.")
 
     else:
         print("\nPlease enter a valid whole number.")
@@ -134,9 +133,9 @@ while counter1 <= int(number_of_operations):
 
         while True:   
              # Get range for the first number
-            range3_input = input("\nDesired range for the dividend: ")
+            range1_input = input("\nDesired range for the dividend: ")
             try:
-                lower_range3, upper_range3 = [int(x.strip()) for x in range1_input.split('-')]
+                lower_range1, upper_range1 = [int(x.strip()) for x in range1_input.split('-')]
                 break
             except ValueError:
                 print("Invalid input format for the dividend's range.")
@@ -149,6 +148,28 @@ while counter1 <= int(number_of_operations):
                 break
             except ValueError:
                 print("Invalid input format for the divisor's range.")
+
+    if int(operation) == 10:
+        operations.append("cre")
+
+        while True:
+             # Get range for the first number
+            range1_input = input("\nDesired range for the first number (Exponent Base): ")
+            try:
+                lower_range1, upper_range1 = [int(x.strip()) for x in range1_input.split('-')]
+                break 
+            except ValueError:
+                print("Invalid format for the first number's range. Try again.")
+               
+
+        while True:
+            # Get range for the second number
+            range2_input = input("\nDesired range for the second number (Exponent/Power - advised to keep this under 10): ")
+            try:
+                lower_range2, upper_range2 = [int(x.strip()) for x in range2_input.split('-')]
+                break
+            except ValueError:
+                print("Invalid format for the second number's range. Try again.")
 
                 
 
@@ -253,7 +274,7 @@ while count < (totalQuestions):
                     print("The question set has been reset.")
 
 
-                elif playerAnswer.lower() == "end":
+                elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                     count = totalQuestions
                     quit()
 
@@ -338,7 +359,7 @@ while count < (totalQuestions):
                         print("The question set has been reset.")
                         break
                 
-                    elif playerAnswer.lower() == "end":
+                    elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                         print(f"Total wrong answers: {wrongAnswers}")
                         quit()
                             
@@ -399,7 +420,7 @@ while count < (totalQuestions):
                     wrongAnswers = 0
                     print("The question set has been reset.")
 
-                elif playerAnswer.lower() == "end":
+                elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                     count = totalQuestions
                     quit()
 
@@ -463,7 +484,7 @@ while count < (totalQuestions):
                     wrongAnswers = 0
                     print("The question set has been reset.")
 
-                elif playerAnswer.lower() == "end":
+                elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                     count = totalQuestions
                     quit()
 
@@ -522,7 +543,7 @@ while count < (totalQuestions):
                     wrongAnswers = 0
                     print("The question set has been reset.")
 
-                elif playerAnswer.lower() == "end":
+                elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                     count = totalQuestions
                     quit()
 
@@ -581,7 +602,7 @@ while count < (totalQuestions):
                     wrongAnswers = 0
                     print("The question set has been reset.")
 
-                elif playerAnswer.lower() == "end":
+                elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                     count = totalQuestions
                     quit()
 
@@ -640,7 +661,7 @@ while count < (totalQuestions):
                     wrongAnswers = 0
                     print("The question set has been reset.")
 
-                elif playerAnswer.lower() == "end":
+                elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                     count = totalQuestions
                     quit()
 
@@ -683,7 +704,7 @@ while count < (totalQuestions):
 #Custom Range Division
     elif operation.lower() == "crd":
         num1 = random.randrange(int(lower_range3), int(upper_range3))
-        num2 = random.randrange(int(lower_range4), int(upper_range4))
+        num2 = random.randrange(int(lower_range2), int(upper_range2))
         correct = False
         mistakes = 0
 
@@ -700,7 +721,7 @@ while count < (totalQuestions):
                     wrongAnswers = 0
                     print("The question set has been reset.")
 
-                elif playerAnswer.lower() == "end":
+                elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                     count = totalQuestions
                     quit()
 
@@ -742,26 +763,27 @@ while count < (totalQuestions):
 #-----------------------------------------------------------------------------------------------------------------------------
 #Custom Range Exponents
     elif operation.lower() == "cre":
-        num1 = random.randrange(int(lower_range5), int(upper_range5))
-        num2 = random.randrange(int(lower_range6), int(upper_range6))
+        num1 = random.randrange(int(lower_range1), int(upper_range1))
+        num2 = random.randrange(int(lower_range2), int(upper_range2))
         correct = False
         mistakes = 0
 
         while not correct:
             try:
-
-                playerAnswer = input(f"Question Number {count + 1}: {num1} ^ {num2} = ")
+                digit_name = unicodedata.name(str(num2)).replace("DIGIT ", "")
+                exponent_char = unicodedata.lookup(f"SUPERSCRIPT {digit_name}")
+                playerAnswer = input(f"Question Number {count + 1}: {num1}{exponent_char} = ")
                     
                 if playerAnswer.lower() == "restart":
                     count = 0
                     wrongAnswers = 0
                     print("The question set has been reset.")
 
-                elif playerAnswer.lower() == "end":
+                elif playerAnswer.lower() in {"end", "stop", "quit", "exit"}:
                     count = totalQuestions
                     quit()
 
-                elif int(playerAnswer) == (num1 ^ num2):
+                elif int(playerAnswer) == (num1 ** num2):
                     print("Correct!")
                     count += 1
                     correct = True
@@ -780,16 +802,16 @@ while count < (totalQuestions):
                         wrongAnswers = 0
                         print("The question set has been reset.")
 
-                    elif int(newAnswer) == (num1 ^ num2):
+                    elif int(newAnswer) == (num1 ** num2):
                         count += 1
                         print("Correct!")
                         correct = True
 
                     elif mistakes >= 1:
-                        print(f"Incorrect again! The correct answer was {num1 ^ num2}. Moving to another question.")
+                        print(f"Incorrect again! The correct answer was {num1 ** num2}. Moving to another question.")
                         break
                     else:
-                        print(f"Incorrect! The answer was {num1 ^ num2}. Try another problem.")
+                        print(f"Incorrect! The answer was {num1 ** num2}. Try another problem.")
                         
 
             except Exception as e:
@@ -800,10 +822,10 @@ if wrongAnswers > 5:
     print(f"You got a total of {wrongAnswers} questions wrong.")
 
 elif 1 < wrongAnswers <= 5:
-    print(f"You got most of the questions right. Only {wrongAnswers} questions were wrong. Good Job!")
+    print(f"You got some of the questions right. Only {wrongAnswers} questions/attempts were wrong. Good Job!")
 
 elif wrongAnswers == 1:
-    print(f"You got most of the questions right. Only {wrongAnswers} question was wrong. Good Job!")
+    print(f"You got most of the questions right. Only {wrongAnswers} question/attempts was wrong. Good Job!")
     
 elif wrongAnswers == 0:
     print(f"You got all of the questions right. Great Job!")
